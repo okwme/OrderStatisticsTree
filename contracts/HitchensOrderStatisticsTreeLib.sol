@@ -161,7 +161,12 @@ library HitchensOrderStatisticsTreeLib {
                     } else {
                         cursor = c.left;
                         c = self.nodes[cursor];
-                        smaller -= (keyCount + getNodeCount(self,c.right));
+                        if (smaller >= (keyCount + getNodeCount(self, c.right))) {
+                            smaller -= (keyCount + getNodeCount(self, c.right));
+                        } else {
+                            smaller = 0;
+                            finished = true;
+                        }
                     }
                 }
                 if (!exists(self,cursor)) {
@@ -191,7 +196,12 @@ library HitchensOrderStatisticsTreeLib {
                 } else {
                     cursor = c.left;
                     c = self.nodes[cursor];
-                    smaller -= (keyCount + getNodeCount(self,c.right));
+                    if (smaller >= (keyCount + getNodeCount(self, c.right))) {
+                        smaller -= (keyCount + getNodeCount(self, c.right));
+                    } else {
+                        smaller = 0;
+                        finished = true;
+                    }
                 }
             }
             if (!exists(self,cursor)) {
